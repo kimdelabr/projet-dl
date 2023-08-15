@@ -9,16 +9,18 @@ app = Flask(__name__)
 
 
 @app.route("/")
+
+
 def hello_world():
     img1 = "static/cat_or_dog_1.jpg"
     img2 = "static/cat_or_dog_2.jpg"
     img3 = "static/cat_or_dog_3.jpg"
 
-    model_final = load_model("mobNet_model_tf.tf")
+    model_final = load_model("model_cnn.h5")
 
     img_file = img3
     #test_image = load_img(img_file, target_size = (64, 64))
-    test_image = Image.open(img_file).resize((224, 224))
+    test_image = Image.open(img_file).resize((64, 64))
 
     test_image = img_to_array(test_image)
     test_image = np.expand_dims(test_image, axis = 0)
@@ -34,11 +36,3 @@ app.debug = True
 
 if __name__ == '__main__':
     app.run()
-
-
-
-
-    
-
-
-
